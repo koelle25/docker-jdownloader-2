@@ -1,10 +1,10 @@
 # Docker container for JDownloader 2
-[![Release](https://img.shields.io/github/release/jlesage/docker-jdownloader-2.svg?logo=github&style=for-the-badge)](https://github.com/jlesage/docker-jdownloader-2/releases/latest)
-[![Docker Image Size](https://img.shields.io/docker/image-size/jlesage/jdownloader-2/latest?logo=docker&style=for-the-badge)](https://hub.docker.com/r/jlesage/jdownloader-2/tags)
-[![Docker Pulls](https://img.shields.io/docker/pulls/jlesage/jdownloader-2?label=Pulls&logo=docker&style=for-the-badge)](https://hub.docker.com/r/jlesage/jdownloader-2)
-[![Docker Stars](https://img.shields.io/docker/stars/jlesage/jdownloader-2?label=Stars&logo=docker&style=for-the-badge)](https://hub.docker.com/r/jlesage/jdownloader-2)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/jlesage/docker-jdownloader-2/build-image.yml?logo=github&branch=master&style=for-the-badge)](https://github.com/jlesage/docker-jdownloader-2/actions/workflows/build-image.yml)
-[![Source](https://img.shields.io/badge/Source-GitHub-blue?logo=github&style=for-the-badge)](https://github.com/jlesage/docker-jdownloader-2)
+[![Release](https://img.shields.io/github/release/koelle25/docker-jdownloader-2.svg?logo=github&style=for-the-badge)](https://github.com/koelle25/docker-jdownloader-2/releases/latest)
+[![Docker Image Size](https://img.shields.io/docker/image-size/koelle25/jdownloader-2/latest?logo=docker&style=for-the-badge)](https://hub.docker.com/r/koelle25/jdownloader-2/tags)
+[![Docker Pulls](https://img.shields.io/docker/pulls/koelle25/jdownloader-2?label=Pulls&logo=docker&style=for-the-badge)](https://hub.docker.com/r/koelle25/jdownloader-2)
+[![Docker Stars](https://img.shields.io/docker/stars/koelle25/jdownloader-2?label=Stars&logo=docker&style=for-the-badge)](https://hub.docker.com/r/koelle25/jdownloader-2)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/koelle25/docker-jdownloader-2/build-image.yml?logo=github&branch=master&style=for-the-badge)](https://github.com/koelle25/docker-jdownloader-2/actions/workflows/build-image.yml)
+[![Source](https://img.shields.io/badge/Source-GitHub-blue?logo=github&style=for-the-badge)](https://github.com/koelle25/docker-jdownloader-2)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?style=for-the-badge)](https://paypal.me/JocelynLeSage)
 
 This is a Docker container for [JDownloader 2](http://jdownloader.org).
@@ -37,7 +37,7 @@ docker run -d \
     -p 5800:5800 \
     -v /docker/appdata/jdownloader-2:/config:rw \
     -v /home/user/Downloads:/output:rw \
-    jlesage/jdownloader-2
+    koelle/jdownloader-2
 ```
 
 Where:
@@ -49,7 +49,7 @@ Browse to `http://your-host-ip:5800` to access the JDownloader 2 GUI.
 
 ## Documentation
 
-Full documentation is available at https://github.com/jlesage/docker-jdownloader-2.
+Full documentation is available at https://github.com/koelle25/docker-jdownloader-2.
 
 ## Support or Contact
 
@@ -58,4 +58,4 @@ Having troubles with the container or have questions?  Please
 
 For other great Dockerized applications, see https://jlesage.github.io/docker-apps.
 
-[create a new issue]: https://github.com/jlesage/docker-jdownloader-2/issues
+[create a new issue]: https://github.com/koelle25/docker-jdownloader-2/issues
