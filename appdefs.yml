@@ -69,6 +69,11 @@ app:
           [Click'n'Load]: http://jdownloader.org/knowledge/wiki/glossary/cnl2
           [MyJDownloader browser extension]: https://my.jdownloader.org/apps/
   changelog:
+    - version: 25.05.1
+      date: 2024-05-15
+      changes:
+        - 'Updated baseimage to alpine-3.19-v4.5.3, which brings the following changes:'
+        - '2:Updated JRE to 8u402.'
     - version: 24.01.1
       date: 2024-01-25
       changes:
