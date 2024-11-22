@@ -52,13 +52,15 @@ your valuable time every day!
    * [MyJDownloader](#myjdownloader)
       * [Direct Connection](#direct-connection)
    * [Click'n'Load](#clicknload)
+   * [Troubleshooting](#troubleshooting)
+      * [JDownloader Fails to Start](#jdownloader-fails-to-start)
    * [Support or Contact](#support-or-contact)
 
 ## Quick Start
 
-**NOTE**:
-    The Docker command provided in this quick start is given as an example
-    and parameters should be adjusted to your need.
+> [!IMPORTANT]
+> The Docker command provided in this quick start is given as an example and
+> parameters should be adjusted to your need.
 
 Launch the JDownloader 2 docker container with the following command:
 ```shell
@@ -111,7 +113,7 @@ of this parameter has the format `<VARIABLE_NAME>=<VALUE>`.
 |`TZ`| [TimeZone](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones) used by the container.  Timezone can also be set by mapping `/etc/localtime` between the host and the container. | `Etc/UTC` |
 |`KEEP_APP_RUNNING`| When set to `1`, the application will be automatically restarted when it crashes or terminates. | `0` |
 |`APP_NICENESS`| Priority at which the application should run.  A niceness value of -20 is the highest priority and 19 is the lowest priority.  The default niceness value is 0.  **NOTE**: A negative niceness (priority increase) requires additional permissions.  In this case, the container should be run with the docker option `--cap-add=SYS_NICE`. | `0` |
-|`INSTALL_PACKAGES`| Space-separated list of packages to install during the startup of the container.  List of available packages can be found at https://mirrors.alpinelinux.org.  **ATTENTION**: Container functionality can be affected when installing a package that overrides existing container files (e.g. binaries). | (no value) |
+|`INSTALL_PACKAGES`| Space-separated list of packages to install during the startup of the container.  List of available packages can be found at https://pkgs.alpinelinux.org.  **ATTENTION**: Container functionality can be affected when installing a package that overrides existing container files (e.g. binaries). | (no value) |
 |`PACKAGES_MIRROR`| Mirror of the repository to use when installing packages. List of mirrors is available at https://mirrors.alpinelinux.org. | (no value) |
 |`CONTAINER_DEBUG`| Set to `1` to enable debug logging. | `0` |
 |`DISPLAY_WIDTH`| Width (in pixels) of the application's window. | `1920` |
@@ -224,11 +226,11 @@ docker rm jdownloader-2
   3. Create/start the container using the `docker run` command, by adjusting
      parameters as needed.
 
-**NOTE**:
-    Since all application's data is saved under the `/config` container
-    folder, destroying and re-creating a container is not a problem: nothing is
-    lost and the application comes back with the same state (as long as the
-    mapping of the `/config` folder remains the same).
+> [!NOTE]
+> Since all application's data is saved under the `/config` container folder,
+> destroying and re-creating a container is not a problem: nothing is lost and
+> the application comes back with the same state (as long as the mapping of the
+> `/config` folder remains the same).
 
 ## Docker Compose File
 
@@ -417,13 +419,13 @@ PEM encoded, x509 certificates.
 |`/config/certs/web-privkey.pem`  |HTTPs connection encryption.|Web server's private key.|
 |`/config/certs/web-fullchain.pem`|HTTPs connection encryption.|Web server's certificate, bundled with any root and intermediate certificates.|
 
-**NOTE**:
-    To prevent any certificate validity warnings/errors from the browser
-    or VNC client, make sure to supply your own valid certificates.
+> [!TIP]
+> To prevent any certificate validity warnings/errors from the browser or VNC
+> client, make sure to supply your own valid certificates.
 
-**NOTE**:
-    Certificate files are monitored and relevant daemons are automatically
-    restarted when changes are detected.
+> [!NOTE]
+> Certificate files are monitored and relevant daemons are automatically
+> restarted when changes are detected.
 
 ### VNC Password
 
@@ -441,11 +443,11 @@ The level of security provided by the VNC password depends on two things:
 When using a VNC password, it is highly desirable to enable the secure
 connection to prevent sending the password in clear over an unencrypted channel.
 
-**ATTENTION**:
-    Password is limited to 8 characters. This limitation comes from
-    the Remote Framebuffer Protocol [RFC](https://tools.ietf.org/html/rfc6143)
-    (see section [7.2.2](https://tools.ietf.org/html/rfc6143#section-7.2.2)).
-    Any characters beyond the limit are ignored.
+> [!CAUTION]
+> Password is limited to 8 characters. This limitation comes from the Remote
+> Framebuffer Protocol [RFC](https://tools.ietf.org/html/rfc6143) (see section
+> [7.2.2](https://tools.ietf.org/html/rfc6143#section-7.2.2)). Any characters
+> beyond the limit are ignored.
 
 ### Web Authentication
 
@@ -459,8 +461,9 @@ environment variable to `1`.
 See the [Environment Variables](#environment-variables) section for more details
 on how to set an environment variable.
 
-**NOTE**: Secure connection must be also enabled to use web authentication.
-          See the [Security](#security) section for more details.
+> [!IMPORTANT]
+> Secure connection must also be enabled to use web authentication.
+> See the [Security](#security) section for more details.
 
 #### Configuring Users Credentials
 
@@ -576,6 +579,9 @@ server {
 	location = /jdownloader-2 {return 301 $scheme://$http_host/jdownloader-2/;}
 	location /jdownloader-2/ {
 		proxy_pass http://docker-jdownloader-2/;
+		# Uncomment the following line if your Nginx server runs on a port that
+		# differs from the one seen by external clients.
+		#port_in_redirect off;
 		location /jdownloader-2/websockify {
 			proxy_pass http://docker-jdownloader-2/websockify/;
 			proxy_http_version 1.1;
@@ -639,6 +645,24 @@ JDownloader via the *MyJDownloader* service.
 
 [Click'n'Load]: http://jdownloader.org/knowledge/wiki/glossary/cnl2
 [MyJDownloader browser extension]: https://my.jdownloader.org/apps/
+
+## Troubleshooting
+
+### JDownloader Fails to Start
+
+If JDownloader displays an error indicating that it is unable to start,
+following these instruction might help fixing the problem.
+
+1. Create the file `.fix_jd_install`, under the directory that has been mapped
+   to `/config`. The content of the file is not important. However, if the
+   latest JDownloader installer is required, setting the content to `download`
+   causes the installer to be downloaded.
+2. Restart the container.
+
+The presence of the file causes the container to attempt fixing the installation
+during its startup. The repair process follows the instructions provided at:
+
+https://support.jdownloader.org/en/knowledgebase/article/fix-jdownloader-installation
 
 ## Support or Contact
 
