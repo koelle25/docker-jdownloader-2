@@ -17,7 +17,7 @@
 ARG DOCKER_IMAGE_VERSION=
 
 # Define software download URLs.
-ARG JDOWNLOADER_URL=http://installer.jdownloader.org/JDownloader.jar
+ARG JDOWNLOADER_URL=https://installer.jdownloader.org/JDownloader.jar
 
 # Download JDownloader2
 FROM --platform=$BUILDPLATFORM alpine:3.21 AS jd2
@@ -28,7 +28,7 @@ RUN \
     curl -# -L -o /defaults/JDownloader.jar ${JDOWNLOADER_URL}
 
 # Pull base image.
-FROM jlesage/baseimage-gui:alpine-3.21-v4.7.1
+FROM jlesage/baseimage-gui:alpine-3.22-v4.8.0
 
 ARG DOCKER_IMAGE_VERSION
 
