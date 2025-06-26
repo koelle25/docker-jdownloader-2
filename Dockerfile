@@ -20,7 +20,7 @@ ARG DOCKER_IMAGE_VERSION=
 ARG JDOWNLOADER_URL=https://installer.jdownloader.org/JDownloader.jar
 
 # Download JDownloader2
-FROM --platform=$BUILDPLATFORM alpine:3.21 AS jd2
+FROM --platform=$BUILDPLATFORM alpine:3.22 AS jd2
 ARG JDOWNLOADER_URL
 RUN \
     apk --no-cache add curl && \
